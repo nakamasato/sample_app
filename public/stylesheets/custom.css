@@ -4,7 +4,7 @@
 } 
 
 body{
-   background: #cff
+   background: #cff;
 }
 
 
@@ -15,14 +15,14 @@ header{
 
 header img{
    padding: 1em;
-   background: #fff
+   background: #fff;
 }
 
 section {
  margin-top: 1em;
  font-size: 120%;
  padding: 20px;
- background: #fff
+ background: #fff;
 }
 
 section h1 {
