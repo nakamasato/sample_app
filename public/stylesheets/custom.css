@@ -39,13 +39,13 @@ a {
  text-decoration: none;
 }     
 
-a:haver {
+a:hover {
 
  color: #069;
  text-decoration: underline;
 }  
 
-a.visited {
+a:visited {
 
  color: #069;
 
@@ -56,6 +56,9 @@ a.visited {
 nav {
 
  float: right;
+}
+
+nav {
  background: white;
  padding: 0 0.7em;
  white-space: nowrap;
