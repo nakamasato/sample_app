@@ -59,7 +59,7 @@ nav {
 }
 
 nav {
- background: white;
+ background-color: white;
  padding: 0 0.7em;
  white-space: nowrap;
 }
@@ -95,7 +95,7 @@ a.signup_button {
   width: 190px;
   color: #fff;
   background: #006400;
-  font-size: 150%;
+  font-size: 120%;
   font-weight: bold;
   padding: 20px;
 }
