@@ -150,13 +150,26 @@ describe UsersController do
       put :update, :id => @user, :user => @attr
       response.should have_selector('title', :content => "Edit user")
     end
+
+    describe "success" do
+      before(:each) do
+        @attr = {  :user => "New Name", :email => "user@example.org", :password => "barbaz", :password_confirmation => "barbaz"}
+      end
+      it "should change the users attronite" do
+        put :update, :id => @user, :user => @attr
+        user = assigns(:user)
+        @user.reload
+        @user.name.should == user.name
+        @user.email.should == user.email
+        @user.encrypted_password.should == user.encrypted_password
+      end
+      it "should have a flash message" do
+        put :update, :id =>@user, :user => @attr
+        flash[:success].should =~ /updated/
+      end
+
+    end
+
   end
-
-  describe "success" do
-    before(:each) do
-
-
-  end
-
 end
 
