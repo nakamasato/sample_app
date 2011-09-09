@@ -19,14 +19,16 @@ describe UsersController do
       before(:each)do
         @user  = test_sign_in(Factory(:user))
         second = Factory(:user, :name => "Bob",:email => "another@example.com")
-        third = Factory(:user, :name => "Bon",:email => "another@example.net")
+        third = Factory(:user, :name => "Ben",:email => "another@example.net")
 
         @users = [@user, second, third]
       end
+
       it "should be successful" do
         get :index
         response.should be_success
       end
+
       it "should have the right title" do
         get :index
         response.should have_selector("title", :content =>"All users")
@@ -177,8 +179,7 @@ describe UsersController do
         
     end
     describe "failure" do
-      @attr = { :name => "New User", :email => "user@example.com", :password \
-        => "foobar", :password_confirmation => "foobar"}
+      @attr = { :name => "", :email => "", :password  => "", :password_confirmation => ""}
     end
 
     it "should render the 'edit' page" do
@@ -201,7 +202,11 @@ describe UsersController do
         @user.reload
         @user.name.should == user.name
         @user.email.should == user.email
-        @user.encrypted_password.should == user.encrypted_password
+#        @user.encrypted_password.should == user.encrypted_password
+      end
+      it "should redirect to the user show page" do
+        put:update, :id => @user, :user => @attr
+        response.should redirect_to(user_path(@user))
       end
       it "should have a flash message" do
         put :update, :id =>@user, :user => @attr
@@ -215,12 +220,13 @@ describe UsersController do
       @user = Factory(:user)
     end
     describe "for non-signed-in users" do
-      it "should deny access to 'edit'" do
+      it "should deny access to edit" do
         get :edit, :id => @user
         response.should redirect_to(signin_path)
       end
+
       it "should deny access to 'update'" do
-        get :update, :id => @user, :user => { }
+        get :update, :id => @user, :user => {}
         response.should redirect_to(signin_path)
       end
     end
@@ -232,7 +238,7 @@ describe UsersController do
       end
 
       it "should require matching users for edit"do
-        get :edit, :id => @user
+        get :edit,  :id => @user
         response.should redirect_to(root_path)
       end
       it "should require matching users for update"do
