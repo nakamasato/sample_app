@@ -31,6 +31,12 @@ module SessionsHelper
    user == current_user
  end
 
+ def authenticate
+   deny_access unless signed_in?
+ end
+
+
+
  def redirect_back_or(default)
    redirect_to(session[:return_to] || default)
    clear_return_to

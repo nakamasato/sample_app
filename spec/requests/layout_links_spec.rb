@@ -63,7 +63,7 @@ describe "LayoutLinks" do
       fill_in :email,    :with => @user.email
       fill_in :password, :with => @user.password
       click_button
-    end
+    end  
 
     it "should have a signout link" do
       visit root_path
