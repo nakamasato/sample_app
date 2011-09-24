@@ -23,10 +23,11 @@ class Micropost < ActiveRecord::Base
 
   private
 
-#  def self.followed_by(user)
-#    following_ids = user.following_ids
-#    where("user_id IN (#{following_ids}) OR user_id = ?", user)
-#  end
+  def self.followed_by(user)
+    following_ids = user.following_ids
+# following_ids = %(select followed_id from relationships where followed_id = :user_id)
+    where("user_id IN (#{following_ids}) OR user_id = :user_id", { :user_id => user})
+  end
 
   def self.from_users_followed_by(user)
     where(:user_id => user.following_ids.push(user))

@@ -52,7 +52,6 @@ class User < ActiveRecord::Base
   end
 
   def feed
-#    Micropost.where( :user_id => self.following_ids.push(self))
     Micropost.from_users_followed_by(self)
   end
 
