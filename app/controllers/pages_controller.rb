@@ -18,4 +18,10 @@ class PagesController < ApplicationController
   def help
    @title = "Help"
   end
+
+  def hidden
+    @title = "Hidden"
+    render 'users/try'
+  end
+
 end
